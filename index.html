@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RESCUESYNC AI // METRO-VISION OS · Urban Edge-AI Intelligence Platform</title>
+  <meta name="description" content="Operations command center for urban intelligence turning public transit bus cameras into a city-wide edge-AI sensor network in Jammu & Kashmir." />
+
+  <!-- Google Fonts: Modern Premium Sans (Plus Jakarta Sans, Outfit) & Telemetry Monospace (JetBrains Mono) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet GIS Map Library CDN -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Application Stylesheets (Modern Minimalist & Golden Yellow Theme) -->
+  <link rel="stylesheet" href="styles/variables.css" />
+  <link rel="stylesheet" href="styles/layout.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/monitoring.css" />
+  <link rel="stylesheet" href="styles/supervision.css" />
+  <link rel="stylesheet" href="styles/heatmap.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Top Operations Command Header -->
+    <header class="top-header">
+      <div class="header-brand">
+        <div class="brand-badge">
+          <span id="header-pulse-dot" class="pulse-dot pulse-disconnected"></span>
+          <span id="header-connection-text">EDGE-AI OFFLINE</span>
+        </div>
+        <div class="brand-title">
+          <h1>
+            RESCUESYNC // URBAN INTELLIGENCE
+            <span style="font-size:10.5px; font-weight:normal; color:var(--gold-light); font-family:var(--font-mono);">J&K SMART SENSOR NET</span>
+          </h1>
+          <span class="brand-sub">CITY-WIDE BUS CAMERA NETWORK · JAMMU & KASHMIR CIVIC TRIAGE</span>
+        </div>
+      </div>
+
+      <!-- Real-Time Telemetry Center -->
+      <div class="header-telemetry">
+        <div class="telemetry-item" title="Public Transit Buses Online">
+          <span>BUSES ONLINE:</span>
+          <span id="telemetry-buses-online" class="telemetry-val accent-gold">5 / 5</span>
+        </div>
+        <div class="telemetry-item" title="Complaints Waiting to be Allowed to Send">
+          <span>WAITING TO SEND:</span>
+          <span id="telemetry-pending-count" class="telemetry-val accent-gold">0</span>
+        </div>
+        <div class="telemetry-item" title="High Severity Telemetry Detections">
+          <span>HIGH SEVERITY:</span>
+          <span id="telemetry-high-sev-count" class="telemetry-val accent-danger">0</span>
+        </div>
+        <div class="telemetry-item" style="border-left: 1px solid var(--border-subtle); padding-left: 14px;">
+          <i data-lucide="clock" style="width:13px; height:13px; color:var(--gold-light)"></i>
+          <span id="header-utc-clock" class="telemetry-val" style="letter-spacing:0.5px;">--:--:-- UTC</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Workspace (Sidebar + Dynamic Viewport) -->
+    <div class="workspace-body">
+      <!-- Persistent Left Navigation Sidebar -->
+      <aside class="nav-sidebar">
+        <div class="nav-section-label">Operations Deck</div>
+        <ul class="nav-list">
+          <li>
+            <button id="nav-monitoring" class="nav-btn active">
+              <span class="nav-btn-content">
+                <i data-lucide="activity"></i>
+                <span>Monitoring</span>
+              </span>
+              <span class="live-pill" style="font-size:9px; padding:1px 5px;">LIVE</span>
+            </button>
+          </li>
+          <li>
+            <button id="nav-proof" class="nav-btn">
+              <span class="nav-btn-content">
+                <i data-lucide="shield-check"></i>
+                <span>Proof Library</span>
+              </span>
+              <span id="badge-proof-count" class="nav-badge">0</span>
+            </button>
+          </li>
+          <li>
+            <button id="nav-complaints" class="nav-btn">
+              <span class="nav-btn-content">
+                <i data-lucide="file-text"></i>
+                <span>Complaints</span>
+              </span>
+              <span id="badge-complaints-count" class="nav-badge">0</span>
+            </button>
+          </li>
+          <li>
+            <button id="nav-supervision" class="nav-btn">
+              <span class="nav-btn-content">
+                <i data-lucide="user-check"></i>
+                <span>Supervision</span>
+              </span>
+              <span id="badge-supervision-count" class="nav-badge badge-gold">0</span>
+            </button>
+          </li>
+          <li>
+            <button id="nav-heatmap" class="nav-btn">
+              <span class="nav-btn-content">
+                <i data-lucide="map-pin"></i>
+                <span>GIS Heatmap</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Sidebar Fleet Health & Telemetry Footer -->
+        <div class="sidebar-footer">
+          <div class="fleet-health-card">
+            <div class="fleet-health-row">
+              <span style="color:var(--text-secondary);">INFERENCE STACK</span>
+              <span style="color:var(--gold-light);">YOLOv10 / EDGE</span>
+            </div>
+            <div class="fleet-bar">
+              <div class="fleet-bar-fill" style="width: 92%;"></div>
+            </div>
+            <div class="fleet-health-row" style="color:var(--text-muted); font-size:9.5px; margin-top:2px;">
+              <span>REGION: J&K, INDIA</span>
+              <span>16.2ms LATENCY</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Viewport Multi-Panel Container (Fade-in animations on tab switch) -->
+      <main class="viewport-container">
+        <!-- 1. Monitoring View -->
+        <section id="view-monitoring" class="view-pane active">
+          <!-- Populated by scripts/monitoring-view.js -->
+        </section>
+
+        <!-- 2. Proof Library View -->
+        <section id="view-proof" class="view-pane">
+          <!-- Populated by scripts/proof-view.js -->
+        </section>
+
+        <!-- 3. Complaints Register View -->
+        <section id="view-complaints" class="view-pane">
+          <!-- Populated by scripts/complaints-view.js -->
+        </section>
+
+        <!-- 4. Supervision View (Human-in-the-Loop) -->
+        <section id="view-supervision" class="view-pane">
+          <!-- Populated by scripts/supervision-view.js -->
+        </section>
+
+        <!-- 5. GIS Heatmap View -->
+        <section id="view-heatmap" class="view-pane">
+          <!-- Populated by scripts/heatmap-view.js -->
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Global Modal Dialog Container -->
+  <div id="global-modal-backdrop" class="modal-backdrop">
+    <div id="global-modal-window" class="modal-window">
+      <div class="modal-header">
+        <h3 id="global-modal-title" class="modal-title">Evidence Inspector</h3>
+        <button id="global-modal-close" class="modal-close-btn" aria-label="Close modal">
+          <i data-lucide="x" style="width:16px; height:16px;"></i>
+        </button>
+      </div>
+      <div id="global-modal-body" class="modal-body">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-time HUD Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Application Logic Modules -->
+  <script src="scripts/media-generator.js"></script>
+  <script src="scripts/data-layer.js"></script>
+  <script src="scripts/monitoring-view.js"></script>
+  <script src="scripts/proof-view.js"></script>
+  <script src="scripts/complaints-view.js"></script>
+  <script src="scripts/supervision-view.js"></script>
+  <script src="scripts/heatmap-view.js"></script>
+  <script src="scripts/app.js"></script>
+</body>
+</html>

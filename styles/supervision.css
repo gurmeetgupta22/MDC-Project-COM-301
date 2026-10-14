@@ -1,0 +1,163 @@
+/* ==========================================================================
+   METRO-VISION OS: SUPERVISION VIEW (WHITE & GOLDEN YELLOW THEME)
+   ========================================================================== */
+
+.supervision-view-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Ready to Send Alert Header */
+.supervision-status-banner {
+  background: linear-gradient(90deg, #FFFDF5 0%, #FFFFFF 100%);
+  border: 1px solid #FCD34D;
+  border-left: 6px solid var(--gold-primary);
+  border-radius: var(--radius-md);
+  padding: 18px 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 8px 24px -4px rgba(217, 119, 6, 0.12);
+}
+
+.supervision-status-banner h4 {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--gold-deep);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.supervision-status-banner p {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* Supervision Complaint Card with Floating Hover Effect */
+.supervision-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: var(--transition-hover);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.supervision-card:hover {
+  border-color: rgba(245, 158, 11, 0.7);
+  box-shadow: var(--shadow-floating-hover);
+  transform: translateY(-8px) scale(1.005);
+}
+
+.supervision-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.supervision-card-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .supervision-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Inline Proof Media Frame */
+.supervision-proof-frame {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #05070A;
+  border: 1px solid #CBD5E1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+}
+
+.supervision-proof-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s var(--ease-smooth);
+}
+
+.supervision-card:hover .supervision-proof-frame img {
+  transform: scale(1.05);
+}
+
+.supervision-proof-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Editable Summary Area */
+.supervision-summary-editor {
+  width: 100%;
+  min-height: 96px;
+  background-color: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.55;
+  padding: 12px 14px;
+  resize: vertical;
+  outline: none;
+  transition: var(--transition-smooth);
+}
+
+.supervision-summary-editor:focus {
+  border-color: var(--gold-primary);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+}
+
+/* Footer Action Toolbar */
+.supervision-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #E2E8F0;
+  padding-top: 16px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.allow-send-btn {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(217, 119, 6, 0.85);
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.3);
+  padding: 9px 20px;
+  border-radius: var(--radius-pill);
+  transition: var(--transition-bounce);
+}
+
+.allow-send-btn:hover {
+  background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 100%);
+  box-shadow: 0 8px 24px rgba(217, 119, 6, 0.45);
+  transform: translateY(-2px) scale(1.03);
+}

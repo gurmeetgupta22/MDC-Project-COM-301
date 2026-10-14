@@ -1,0 +1,80 @@
+/* ==========================================================================
+   METRO-VISION OS / RESCUESYNC AI: WHITE & GOLDEN YELLOW MINIMALIST THEME
+   Modern Rounded Surfaces, Volumetric Shadows & Micro-Animations
+   ========================================================================== */
+
+:root {
+  /* Surfaces & Backgrounds (Crisp White & Warm Off-White) */
+  --bg-deck: #F8FAFC;              /* Clean fluid canvas */
+  --bg-surface-1: #FFFFFF;         /* Pure white container & card surface */
+  --bg-surface-2: #F1F5F9;         /* Elevated secondary controls */
+  --bg-surface-3: #E2E8F0;         /* Contrast fills */
+  --bg-surface-hover: #FFFDF5;     /* Warm golden-white hover state */
+  --bg-surface-gold-tint: rgba(245, 158, 11, 0.04);
+  --bg-glass: rgba(255, 255, 255, 0.85);
+  --bg-overlay: rgba(15, 23, 42, 0.55);
+
+  /* Golden Yellow Accent Palette */
+  --gold-primary: #D97706;         /* Rich Golden Amber */
+  --gold-light: #F59E0B;           /* Vibrant Golden Yellow */
+  --gold-bright: #FBBF24;          /* Bright Gold */
+  --gold-deep: #B45309;            /* Deep Metallic Gold */
+  --gold-subtle: rgba(245, 158, 11, 0.08); /* Warm gold tint */
+  --gold-border: rgba(245, 158, 11, 0.38); /* Golden container outline */
+  --gold-glow: rgba(245, 158, 11, 0.28);
+
+  /* Operational Status Colors */
+  --status-live: #D97706;          /* Golden amber for live */
+  --status-pending: #F59E0B;       /* Amber for review */
+  --status-danger: #EF4444;        /* Vibrant Crimson Red */
+  --status-success: #10B981;       /* Vibrant Emerald Green */
+  --status-info: #3B82F6;          /* Royal Blue */
+  --status-disconnected: #F43F5E;  /* Rose Red */
+
+  /* Borders & Dividers */
+  --border-dim: #E2E8F0;           /* Soft light gray border */
+  --border-subtle: #CBD5E1;        /* Defined border */
+  --border-focus: var(--gold-border);
+  --border-gold: rgba(217, 119, 6, 0.45);
+  --border-gold-soft: rgba(245, 158, 11, 0.22);
+
+  /* Typography & High-Contrast Text */
+  --text-primary: #0F172A;         /* Slate black (Maximum legibility) */
+  --text-secondary: #475569;       /* Smooth medium slate */
+  --text-muted: #64748B;           /* Dim technical text */
+  --text-gold: #B45309;            /* Golden text */
+
+  /* Smooth Modern Fonts */
+  --font-ui: 'Plus Jakarta Sans', 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', Menlo, Monaco, monospace;
+
+  /* Volumetric 3D Floating Shadows (Eliminates Flatness) */
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-sm: 0 3px 8px -1px rgba(0, 0, 0, 0.05), 0 1px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 6px 20px -3px rgba(15, 23, 42, 0.05), 0 2px 6px -2px rgba(0, 0, 0, 0.03);
+  --shadow-floating: 0 12px 32px -4px rgba(15, 23, 42, 0.07), 0 4px 12px -2px rgba(217, 119, 6, 0.05);
+  --shadow-floating-hover: 0 26px 54px -10px rgba(217, 119, 6, 0.22), 0 12px 24px -4px rgba(15, 23, 42, 0.08);
+  --shadow-gold-glow: 0 0 24px rgba(245, 158, 11, 0.28);
+  --shadow-gold-button: 0 6px 20px rgba(217, 119, 6, 0.25);
+  --shadow-gold-button-hover: 0 10px 28px rgba(217, 119, 6, 0.38);
+
+  /* Modern Smooth Rounded Edges */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-box: 20px;
+  --radius-pill: 9999px;
+
+  /* Animations & Micro-Interaction Easings */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-smooth: all 0.28s var(--ease-smooth);
+  --transition-bounce: all 0.36s var(--ease-spring);
+  --transition-hover: transform 0.28s var(--ease-smooth), box-shadow 0.28s var(--ease-smooth), border-color 0.28s var(--ease-smooth);
+
+  /* Dimensions */
+  --header-height: 64px;
+  --sidebar-width: 250px;
+}
